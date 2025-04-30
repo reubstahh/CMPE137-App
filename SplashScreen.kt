@@ -11,8 +11,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.layout.ContentScale
 
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import androidx.compose.runtime.SideEffect
+
+
 @Composable
-fun SplashScreen() {
+fun SplashPage() {
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(0xFFD4FF99), // or whatever background your inventory needs
+            darkIcons = true // Light icons = false, Dark icons = true
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -24,10 +37,10 @@ fun SplashScreen() {
         Image(
             painter = painterResource(id = R.drawable.image1), // replace with your actual image name
             contentDescription = "Splash Logo",
+            contentScale = ContentScale.Crop,
+            alignment = Alignment.TopCenter,
             modifier = Modifier
-                .width(308.dp)
-                .height(308.dp),
-            contentScale = ContentScale.Crop
+                .fillMaxSize()
         )
     }
 }
